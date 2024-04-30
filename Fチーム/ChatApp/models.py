@@ -11,8 +11,7 @@ class dbConnect:
             cur.execute(sql, (uid, name, email, password))
             conn.commit()
         except Exception as e:
-            print(e + 'が発生しています')
-            abort(500)
+            print(f'エラーが発生しています：{e}')
         finally:
             cur.close()
 
@@ -26,8 +25,7 @@ class dbConnect:
             user = cur.fetchone()
             return user
         except Exception as e:
-            print(e + 'が発生しています')
-            abort(500)
+            print(f'エラーが発生しています:{e}')
         finally:
             cur.close()
 
