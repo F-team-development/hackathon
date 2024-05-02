@@ -1,15 +1,20 @@
-from flask import Flask, request, redirect, render_template, session, flash, abort
+from flask import Flask, request, redirect, render_template, session, flash, url_for
 from datetime import timedelta
 import hashlib
 import uuid
 import re
+import os
 
 from models import dbConnect
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = '/path/to/the/uploads'
+ALLOWED_EXTENSIONS = {'png','jpg','jpeg'}
 
 app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
-
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # サインアップページの表示
 @app.route('/signup')
@@ -94,6 +99,28 @@ def index():
         channels.reverse()
     return render_template('index.html', channels=channels, uid=uid)
 
+
+#画像投稿(ファイルのアップロード)
+def allowed_file(filename):
+    return '.' in filename and \
+            filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
+            
+@app.route('/', methods=['GET','POST'])
+def upload_file():
+    if request.method == 'POST':
+        #POSTリクエスト内にファイルパートが含まれているかどうかを確認
+        if 'file' not in request.files:
+            flash('ファイルが含まれていません。許可される形式は .png または .jpg / .jpeg です。')
+            return redirect(request.url)
+        file = request.files['file']
+        #ユーザーがファイルを選択しない場合、ブラウザはファイル名のない空のファイルを送信する
+        if file.filename == '':
+            flash('ファイルが選択されていません。ファイルを選択してから再度送信してください。')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            return redirect(url_for('download_file', name = filename))
 
 # チャンネルの追加
 @app.route('/', methods=['POST'])
