@@ -43,3 +43,7 @@ CREATE TABLES images(
 INSERT INTO users(uid, user_name, email, password)VALUES('99ace1a1-725b-be03-2455-56a66be4a079','テスト','pet@gmail.com','778c04806dd4ba98b1bbff9083433a8f67aed60a3346dfa16913fb5e875e462d');
 INSERT INTO channels(id, uid, name)VALUES(1, '99ace1a1-725b-be03-2455-56a66be4a079','犬');
 INSERT INTO messages(id, uid, cid, message)VALUES(1, '99ace1a1-725b-be03-2455-56a66be4a079', '1', '犬です')
+
+INSERT INTO posts (user_id, message)VALUES ('99ace1a1-725b-be03-2455-56a66be4a079', '飼っている犬です。');
+
+INSERT INTO images(post_id,image_data)VALUES(1,LOAD_FILE('/path/to/your/image.jpg'));
