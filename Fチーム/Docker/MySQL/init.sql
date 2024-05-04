@@ -24,7 +24,8 @@ CREATE TABLE messages (
     id serial PRIMARY KEY,
     uid varchar(255) REFERENCES users(uid),
     cid integer REFERENCES channels(id) ON DELETE CASCADE,
-    message text
+    message text,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLES posts(
