@@ -113,12 +113,12 @@ class dbConnect:
             cur.close()
 
 
-    def createMessage(uid, cid, message):
+    def createMessage(uid, cid, message, created_at):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO messages(uid, cid, message) VALUES(%s, %s, %s)"
-            cur.execute(sql, (uid, cid, message))
+            sql = "INSERT INTO messages(uid, cid, message, created_at) VALUES(%s, %s, %s, %s)"
+            cur.execute(sql, (uid, cid, message, created_at))
             conn.commit()
         except Exception as e:
             print(f'エラーが発生しています：{e}')
