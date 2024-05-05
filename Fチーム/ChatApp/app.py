@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, render_template, session, flash, url_for
-from datetime import timedelta
+from datetime import timedelta, datetime
 import hashlib
 import uuid
 import re
@@ -195,8 +195,11 @@ def add_message():
     message = request.form.get('message')
     cid = request.form.get('cid')
 
+    # タイムスタンプの取得
+    created_at = datetime.now().strftime('%m-%d %H:%M')
+
     if message:
-        dbConnect.createMessage(uid, cid, message)
+        dbConnect.createMessage(uid, cid, message, created_at)
 
     return redirect('/detail/{cid}'.format(cid = cid))
 
