@@ -151,3 +151,30 @@ class dbConnect:
             print(f'エラーが発生しています：{e}')
         finally:
             cur.close()
+
+
+    def getProfile(uid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT user_name, user_icon, user_bio FROM users WHERE uid=%s;"
+            cur.execute(sql, (uid))
+            profile = cur.fetchone()
+            return profile
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+        finally:
+            cur.close()
+
+
+    def updateProfile(newUserName, newUserIcon, newUserBio, uid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "UPDATE users SET user_name=%s, user_icon=%s, user_bio=%s WHERE uid=%s;"
+            cur.execute(sql, (newUserName, newUserIcon, newUserBio, uid))
+            conn.commit()
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+        finally:
+            cur.close()
