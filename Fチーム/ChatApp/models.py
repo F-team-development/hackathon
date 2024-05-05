@@ -137,3 +137,17 @@ class dbConnect:
             print(f'エラーが発生しています：{e}')
         finally:
             cur.close()
+
+
+    # プロフィール編集機能のために追加
+    def createProfile(name, icon, bio):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO users (user_name, user_icon, user_bio) VALUES (%s, %s, %s);"
+            cur.execute(sql, (name, icon, bio))
+            conn.commit()
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+        finally:
+            cur.close()
