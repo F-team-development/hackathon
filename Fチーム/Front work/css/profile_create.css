@@ -46,35 +46,53 @@
     text-align: center;
   }
 
-  .user_icon {
-    text-align: center;
-  }
-
-  img.user_icon_img {
-    margin: 20px 0px 0 130px;
-    padding: 10px 30px 15px 30px;
-    background-color: #ff7a00;
-    width: 180px;
-    height: 120px;
-    border-radius: 20%;
-  }
-
-  img.user_choice_img {
-    padding: 0;
-    border: none;
-    outline: none;
-    font: inherit;
-    color: inherit;
-    background: none;
-    width: 80px;
-    height: 50px;
-    margin-right: 40px;
+  img#img {
+    height: 100px;
+    margin-bottom: 20px;
     border-radius: 50%;
   }
 
-  img.user_choice_img:hover {
+  input[type="file"] {
+    display: none;
+  }
+
+  img.file_upload_icon {
+    padding: 0;
+    border: none;
+    outline: none;
+    color: inherit;
+    background: none;
+    display: block;
+    width: 60px;
+    height: 50px;
+    position: relative;
+    left: 410px;
+    bottom: 60px;
+  }
+
+  img.file_upload_icon:hover {
     cursor: pointer;
-    opacity: .7;
+  }
+
+  button#delete {
+    padding: 0;
+    border: none;
+    outline: none;
+    color: inherit;
+    background: none;
+    font-size: medium;
+    background: white;
+    border: 1px solid black;
+    display: block;
+    position: relative;
+    left: 480px;
+    bottom: 95px;
+  }
+
+  button#delete:hover {
+    cursor: pointer;
+    opacity: .9;
+    border: 2px solid black;
   }
   
   /*　セクション　*/
