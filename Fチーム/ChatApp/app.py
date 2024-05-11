@@ -14,7 +14,7 @@ ALLOWED_EXTENSIONS = {'png','jpg','jpeg'}
 app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 8*1024*1024 # 1MB
 
 # サインアップページの表示
 @app.route('/signup')
@@ -120,6 +120,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            flash('ファイルが正常にアップロードされました。', 'success')
             return redirect(url_for('download_file', name = filename))
 
 # チャンネルの追加

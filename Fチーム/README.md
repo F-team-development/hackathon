@@ -1,5 +1,5 @@
-# hackathon-begginers-sample
-ハッカソンの初級者コース用のChatAppです。
+# F-team ChatApp
+ハッカソンの初級者コースのChatAppです。
 
 **起動方法**
 ```
