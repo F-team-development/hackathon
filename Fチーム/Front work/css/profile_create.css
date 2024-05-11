@@ -50,6 +50,10 @@
     height: 100px;
     margin-bottom: 20px;
     border-radius: 50%;
+    display: block;
+    position: relative;
+    top: 50px;
+    left: 330px;
   }
 
   input[type="file"] {
@@ -63,11 +67,11 @@
     color: inherit;
     background: none;
     display: block;
-    width: 60px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     position: relative;
-    left: 410px;
-    bottom: 60px;
+    left: 430px;
+    bottom: 10px;
   }
 
   img.file_upload_icon:hover {
@@ -85,8 +89,8 @@
     border: 1px solid black;
     display: block;
     position: relative;
-    left: 480px;
-    bottom: 95px;
+    left: 470px;
+    bottom: 40px;
   }
 
   button#delete:hover {
@@ -100,7 +104,6 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    padding-top: 20px;
     padding-right: 200px;
     font-size: larger;
   }
@@ -116,7 +119,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    padding-top: 30px;
+    padding-top: 25px;
     padding-bottom: 25px;
     padding-right: 20px;
   }
@@ -148,6 +151,10 @@
     outline: none;
     font: inherit;
     color: inherit;
+    display: block;
+    position: relative;
+    bottom: 10px;
+    left: 320px;
     background: none;
     font-size: medium;
     width: 135px;
@@ -155,7 +162,6 @@
     border: 1px solid black;
     background-color: white;
     border-radius: 30px;
-    margin-bottom: 10px;
   }
   
   input#profile_create:hover {
