@@ -11,7 +11,9 @@ CREATE TABLE users (
     uid varchar(255) PRIMARY KEY,
     user_name varchar(255) UNIQUE NOT NULL,
     email varchar(255) UNIQUE NOT NULL,
-    password varchar(255) NOT NULL
+    password varchar(255) NOT NULL,
+    user_icon varchar(255) DEFAULT 'default_icon.png',  # 何も設定しない場合、[default_icon.png](仮)を入れる
+    user_bio varchar(140)
 );
 
 CREATE TABLE channels (

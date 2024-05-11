@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, render_template, session, flash, url_for
-from datetime import timedelta
+from datetime import timedelta, datetime
 import hashlib
 import uuid
 import re
@@ -100,6 +100,7 @@ def index():
 
 
 #画像投稿(ファイルのアップロード)
+<<<<<<< HEAD
 @app.route('/', methods=['GET', 'POST'])
 def upload_image():
     return render_template('index.html')
@@ -108,6 +109,18 @@ def upload_image():
 @app.route("/upload", methods=["POST"])
 def upload():
     if "file" not in request.files:
+=======
+def allowed_file(filename):
+    return '.' in filename and \
+            filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/', methods=['GET','POST'])
+def upload_file():
+    if request.method == 'POST':
+        #POSTリクエスト内にファイルパートが含まれているかどうかを確認
+        if 'file' not in request.files:
+            flash('ファイルが含まれていません。許可される形式は .png または .jpg / .jpeg です。')
+>>>>>>> origin/develop
             return redirect(request.url)
         
     file = request.files["file"] 
@@ -193,8 +206,11 @@ def add_message():
     message = request.form.get('message')
     cid = request.form.get('cid')
 
+    # タイムスタンプの取得
+    created_at = datetime.now().strftime('%m-%d %H:%M')
+
     if message:
-        dbConnect.createMessage(uid, cid, message)
+        dbConnect.createMessage(uid, cid, message, created_at)
 
     return redirect('/detail/{cid}'.format(cid = cid))
 
@@ -213,6 +229,61 @@ def delete_message():
         dbConnect.deleteMessage(message_id)
 
     return redirect('/detail/{cid}'.format(cid = cid))
+
+
+# プロフィールの取得
+@app.route('/edit_profile', methods=['GET'])
+def get_profile():
+    uid = session.get("uid")
+
+    if uid is None:
+        return redirect('/login')
+
+    # DBからユーザーの現在の情報を取得
+    current_profile = dbConnect.getProfile(uid)
+
+    # プロフィール情報を取得できなかった場合、空の情報を入れる
+    if not current_profile:
+        current_profile = {
+        'user_name': '',
+        'user_icon': 'default_icon.png',  # 何も設定されない場合は、デフォルトの画像を挿入
+        'user_bio': ''    # 空でも可
+    }
+
+    return render_template('edit/edit_profile.html', profile = current_profile)
+
+
+# プロフィール更新処理
+@app.route('/update_profile', methods=['POST'])
+def update_profile():
+    # ログインしていない場合はログインページにリダイレクト
+    if 'uid' not in session:
+        return redirect('/login')
+
+    # ユーザーIDを取得
+    uid = session['uid']
+
+    # フォームから送信されたデータを取得
+    name = request.form.get('username')
+    icon = request.files['icon'] if 'icon' in request.files else None
+    bio = request.form.get('bio')
+
+    # ユーザーネームは必須
+    if not name:
+        flash("ユーザーネームは必須です")
+        return redirect('/edit_profile')
+
+    # アイコンがアップロードされている場合は保存
+    icon_filename = 'default_icon.jpg'  # デフォルトのアイコンファイル名
+    if icon:
+        icon_filename = secure_filename(icon.filename)
+        icon.save(os.path.join(app.config['UPLOAD_FOLDER'], icon_filename))
+
+    # プロフィール情報を更新
+    dbConnect.updateProfile(name, icon_filename, bio, uid)
+
+    # 更新後、プロフィールページにリダイレクト
+    return redirect('/edit_profile')
 
 
 @app.errorhandler(404)
