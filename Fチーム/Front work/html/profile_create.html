@@ -63,6 +63,20 @@
               </footer>
               <!-- JSの適応 -->
               <script src="/Users/KikuS/hackathon/Fチーム/Front work/js/profile_create.js" defer></script>
+              <script>
+             //プレビュー表示
+              const previewImage = () => {
+                  const fileInput = document.getElementById("file-input");
+                  const imagePreview = document.getElementById("image-preview");
+              
+              if (fileInput.files && fileInput.files[0]) {
+              const reader = new FileReader();
+              reader.onload = (e) => (imagePreview.src = e.target.result);
+              reader.readAsDataURL(fileInput.files[0]);
+              imagePreview.hidden = false;
+              }
+              };
+              </script>
     </div>
 </body>
 </html>
