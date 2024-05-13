@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  box-sizing: border-box/* よう：要素を幅や高さを統一的に指定するため全体に宣言 */;
 }
 h1{
   font-size: 20px;
@@ -13,10 +14,26 @@ h1{
   margin-top: 10px;
   background-color: orange;
 }
+
+/* よう：.wrapperの装飾（全体追加） */
+.wrapper {
+  display: flex;/* ディスプレイ要素を横並びにして、中央にするようにします。 */
+  justify-content: center;/* 要素を横の中央に配置します。 */
+  align-items: center;/* 要素を縦幅の中央に配置します。 */
+  max-width: 760px;/* ログイン画面等と同様の横幅で統一しています。 */
+  height: 800px;/* .containerの縦幅を指定するため少し大きめのピクセルとしてます。 */
+  margin: 0 auto;/* .wrapperで囲んだ要素（上端のみ）中央にしています。 */
+}
+/* よう：.containerの装飾（全体追加） */
+.container {
+  width: 760;
+  height: 600px;
+}
+
 /*チャットのフィールド*/
 #field{
-  width: 300px;
-  height: 230px;
+  width: 600px;/*　よう： ユーザーが見やすい大きさに整えてます。 */
+  height: 500px;          /*　よう： 同じ */
   padding: 7px 0 14px;
   box-sizing: border-box;
   background-color: #EEE;
