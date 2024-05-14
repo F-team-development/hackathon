@@ -43,15 +43,31 @@
                 </ul>
             </div>
             
-            <!--入力場所，送信ボタン-->
-            <div id="orange-frame">
-            <div id= "input-field">
-                <input type= "text" id= "chat-input">
-                <input type= "button" value= "Send" id= "chat-button" onclick= "btnFunc()">
+               <!--入力場所，送信ボタン-->
+                <div id="orange-frame">
+                    <div id= "input-field">
+                        <input type= "text" id= "chat-input">
+                        <input type= "button" value= "Send" id= "chat-button" onclick= "btnFunc()">
+                    </div>
+                     <!-- よう：ホーム、削除、画像アップロード各アイコン -->
+                    <div class="buttons">
+                        <!--　よう：ホームボタンの追加 -->
+                        <button type="button" class="home_button">
+                            <img src="/Users/KikuS/local_work_front/hackathon/Fチーム/Front work/img/ホームアイコン.png" alt="ホーム" class="buttons">
+                        </button>
+                        <!-- よう：削除ボタンの追加 -->
+                        <button type="button" class="delete_button">
+                            <img src="/Users/KikuS/local_work_front/hackathon/Fチーム/Front work/img/ゴミ箱アイコン.png" alt="ゴミ箱" class="buttons">
+                        </button>
+                        <!-- よう：画像アップロードボタンの追加 -->
+                        <label for="file_upload" class="cutom_file_upload">
+                            <img src="/Users/KikuS/local_work_front/hackathon/Fチーム/Front work/img/画像選択アイコン.png" alt="画像選択アイコン" class="file_upload_icon">
+                            <input type="file" name="image" id="file_upload" accept=".jpg, .jpeg, .png, .gif">
+                        </label>
+                    </div>
+                </div>
             </div>
-            </div>
-
-        </div>
+            
     </div>
 
 </body>
