@@ -100,7 +100,6 @@ def index():
 
 
 #画像投稿(ファイルのアップロード)
-<<<<<<< HEAD
 @app.route('/', methods=['GET', 'POST'])
 def upload_image():
     return render_template('index.html')
@@ -109,18 +108,6 @@ def upload_image():
 @app.route("/upload", methods=["POST"])
 def upload():
     if "file" not in request.files:
-=======
-def allowed_file(filename):
-    return '.' in filename and \
-            filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
-
-@app.route('/', methods=['GET','POST'])
-def upload_file():
-    if request.method == 'POST':
-        #POSTリクエスト内にファイルパートが含まれているかどうかを確認
-        if 'file' not in request.files:
-            flash('ファイルが含まれていません。許可される形式は .png または .jpg / .jpeg です。')
->>>>>>> origin/develop
             return redirect(request.url)
         
     file = request.files["file"] 
