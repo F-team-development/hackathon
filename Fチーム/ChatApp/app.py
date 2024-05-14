@@ -6,7 +6,6 @@ import re
 import os
 
 from models import dbConnect
-from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = '/path/to/the/uploads'
 ALLOWED_EXTENSIONS = {'png','jpg','jpeg'}
@@ -14,7 +13,7 @@ ALLOWED_EXTENSIONS = {'png','jpg','jpeg'}
 app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
-app.config['MAX_CONTENT_LENGTH'] = 8*1024*1024 # 1MB
+app.config['MAX_CONTENT_LENGTH'] = 8*1024*1024 # 8MB
 
 # サインアップページの表示
 @app.route('/signup')
@@ -101,27 +100,25 @@ def index():
 
 
 #画像投稿(ファイルのアップロード)
-def allowed_file(filename):
-    return '.' in filename and \
-            filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
-
-@app.route('/', methods=['GET','POST'])
-def upload_file():
-    if request.method == 'POST':
-        #POSTリクエスト内にファイルパートが含まれているかどうかを確認
-        if 'file' not in request.files:
-            flash('ファイルが含まれていません。許可される形式は .png または .jpg / .jpeg です。')
+@app.route('/', methods=['GET', 'POST'])
+def upload_image():
+    return render_template('index.html')
+    
+    
+@app.route("/upload", methods=["POST"])
+def upload():
+    if "file" not in request.files:
             return redirect(request.url)
-        file = request.files['file']
-        #ユーザーがファイルを選択しない場合、ブラウザはファイル名のない空のファイルを送信する
-        if file.filename == '':
-            flash('ファイルが選択されていません。ファイルを選択してから再度送信してください。')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-            flash('ファイルが正常にアップロードされました。', 'success')
-            return redirect(url_for('download_file', name = filename))
+        
+    file = request.files["file"] 
+    
+    if file.filename == "":
+        return redirect(request.url)
+    
+    file_path = os.path.join("static/image", file.filename)
+    file.save(file_path)
+    
+    return render_template("index.html", file_path=file_path)
 
 # チャンネルの追加
 @app.route('/', methods=['POST'])
