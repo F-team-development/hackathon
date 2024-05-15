@@ -102,7 +102,7 @@ def index():
 #画像投稿(ファイルのアップロード)
 @app.route('/', methods=['GET', 'POST'])
 def upload_image():
-    return render_template('index.html')
+    return render_template('chat.html')
     
     
 @app.route("/upload", methods=["POST"])
@@ -115,10 +115,10 @@ def upload():
     if file.filename == "":
         return redirect(request.url)
     
-    file_path = os.path.join("static/image", file.filename)
+    file_path = os.path.join("Fチーム/Chat PET/static/img", file.filename)
     file.save(file_path)
     
-    return render_template("index.html", file_path=file_path)
+    return render_template("chat.html", file_path=file_path)
 
 # チャンネルの追加
 @app.route('/', methods=['POST'])
