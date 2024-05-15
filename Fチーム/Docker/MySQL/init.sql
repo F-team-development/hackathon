@@ -4,7 +4,7 @@ DROP USER 'testuser';
 
 CREATE USER 'testuser' IDENTIFIED BY 'testuser';
 CREATE DATABASE ChatPET;
-USE chatapp
+USE ChatPET
 GRANT ALL PRIVILEGES ON ChatPET.* TO 'testuser';
 
 CREATE TABLE users (
@@ -33,7 +33,7 @@ CREATE TABLE messages (
 CREATE TABLES posts(
     post_id serial PRIMARY KEY,
     post text NOT NULL,
-    uid VARCHAR(255) REFERENCES users(uid)
+    uid varchar(255) REFERENCES users(uid)
 );
 
 CREATE TABLES images(
