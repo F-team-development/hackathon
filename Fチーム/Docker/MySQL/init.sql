@@ -35,11 +35,12 @@ CREATE TABLE images(
 CREATE TABLE createProfile (
     user_name varchar(255) PRIMARY KEY,
     user_icon varchar(255) DEFAULT 'テスト用猫アイコン.png',
-    user_bio varchar(140)
+    user_bio varchar(140),
+    uid varchar(255) REFERENCES users(uid)
 );
 
 INSERT INTO users(uid, email, password)VALUES('99ace1a1-725b-be03-2455-56a66be4a079','pet@gmail.com','778c04806dd4ba98b1bbff9083433a8f67aed60a3346dfa16913fb5e875e462d');
 INSERT INTO channels(id, uid, name)VALUES(1, '99ace1a1-725b-be03-2455-56a66be4a079','犬');
 INSERT INTO messages(id, uid, cid, message, created_at)VALUES(1, '99ace1a1-725b-be03-2455-56a66be4a079', 1, '犬です',2024-05-17);
 INSERT INTO images(image_id,image_data)VALUES(1,LOAD_FILE('/static/img/ロゴアイコン.jpg'));
-INSERT INTO createProfile(user_name, user_icon, user_bio)VALUES('テスト', 'テスト用猫アイコン.png', 'よろしくお願いします')
+INSERT INTO createProfile(user_name, user_icon, user_bio, uid)VALUES('テスト', 'テスト用猫アイコン.png', 'よろしくお願いします', '99ace1a1-725b-be03-2455-56a66be4a079)
