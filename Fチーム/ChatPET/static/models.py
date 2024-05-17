@@ -125,6 +125,19 @@ class dbConnect:
         finally:
             cur.close()
 
+    
+    def PostImabe(image, message, created_at):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO images(image_data, message_id, created_at) VALUES(%s, %s, %s)"
+            cur.execute(sql, (image, message, created_at))
+            conn.commit()
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+        finally:
+            cur.close() 
+
 
     def deleteMessage(message_id):
         try:
