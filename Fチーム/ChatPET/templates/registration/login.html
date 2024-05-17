@@ -19,20 +19,43 @@
         </header>
 
         <main class="main">
-            <form action="#" method="post">
+            <form action="/login" method="POST">
                 <section class="section_id">
+
+                    {% with messages = get_flashed_messages() %}
+                        {% if massages %}
+                        <ul>
+                            {% for message in massages %}
+                            <li class="{{ category }}">{{message}}</l>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    {% endwith %}
+
+                    <style>
+                        .empty {
+                            color: red;
+                        }
+                        .error {
+                            color: red;
+                        }
+                        .error_address {
+                            color: red;
+                        }
+                    </style>
+
                     <p class="id_text"></p>ID（メールアドレス）：
-                    <p><input type="text" name="id" class="email"></p>
+                    <p><input class="email" type="text" name="email"/></p>
                 </section>
 
                 <section  class="section_password">
-                    <p class="password_text">パスワード：</p><br>
-                    <p><input type="password" name="password" class="password"></p><br>
+                    <p class="password_text">パスワード：</p>
+                    <p><input  class="password" type="password" name="password1"/></p>
                 </section>
 
                 <div class="button">
-                    <p><input type="button" value="ログイン" id="button_login"></p>
-                    <p><input type="button" value="新規登録" id="button_singup"></p>
+                    <p><input type="submit" value="ログイン" id="button_login"></p>
+                    <p><input type="submit" value="新規登録" id="button_singup"></p>
                 </div>
             </form>
         </main>

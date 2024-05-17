@@ -9,11 +9,8 @@ GRANT ALL PRIVILEGES ON ChatPET.* TO 'testuser';
 
 CREATE TABLE users (
     uid varchar(255) PRIMARY KEY,
-    user_name varchar(255) UNIQUE NOT NULL,
     email varchar(255) UNIQUE NOT NULL,
-    password varchar(255) NOT NULL,
-    user_icon varchar(255) DEFAULT 'default_icon.png',  # 何も設定しない場合、[default_icon.png](仮)を入れる
-    user_bio varchar(140)
+    password varchar(255) NOT NULL
 );
 
 CREATE TABLE channels (
@@ -33,11 +30,16 @@ CREATE TABLE messages (
 CREATE TABLE images(
     image_id SERIAL PRIMARY KEY,
     image_data BLOB NOT NULL
-   
 );
 
-INSERT INTO users(uid, user_name, email, password)VALUES('99ace1a1-725b-be03-2455-56a66be4a079','テスト','pet@gmail.com','778c04806dd4ba98b1bbff9083433a8f67aed60a3346dfa16913fb5e875e462d');
-INSERT INTO channels(id, uid, name)VALUES(1, '99ace1a1-725b-be03-2455-56a66be4a079','犬');
-INSERT INTO messages(id, uid, cid, message)VALUES(1, '99ace1a1-725b-be03-2455-56a66be4a079', '1', '犬です');
+CREATE TABLE createProfile (
+    user_name varchar(255) PRIMARY KEY,
+    user_icon varchar(255) DEFAULT 'テスト用猫アイコン.png',
+    user_bio varchar(140)
+);
 
-INSERT INTO images(image_data)VALUES(1,LOAD_FILE('/path/to/your/image.jpg'));
+INSERT INTO users(uid, email, password)VALUES('99ace1a1-725b-be03-2455-56a66be4a079','pet@gmail.com','778c04806dd4ba98b1bbff9083433a8f67aed60a3346dfa16913fb5e875e462d');
+INSERT INTO channels(id, uid, name)VALUES(1, '99ace1a1-725b-be03-2455-56a66be4a079','犬');
+INSERT INTO messages(id, uid, cid, message, created_at)VALUES(1, '99ace1a1-725b-be03-2455-56a66be4a079', 1, '犬です',2024-05-17);
+INSERT INTO images(image_id,image_data)VALUES(1,LOAD_FILE('/static/img/ロゴアイコン.jpg'));
+INSERT INTO createProfile(user_name, user_icon, user_bio)VALUES('テスト', 'テスト用猫アイコン.png', 'よろしくお願いします')
