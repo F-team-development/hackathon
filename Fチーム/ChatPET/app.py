@@ -30,19 +30,18 @@ def signup():
 # サインアップ処理
 @app.route('/signup', methods=['POST'])
 def userSignup():
-    name = request.form.get('name')
     email = request.form.get('email')
-    password1 = request.form.get('password')
+    password = request.form.get('password')
 
     pattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
 
-    if name == '' or email =='' or password == '':
+    if email =='' or password == '':
         flash('空のフォームがあるようです')
     elif re.match(pattern, email) is None:
         flash('正しいメールアドレスの形式ではありません')
     else:
         uid = uuid.uuid4()
-        password = hashlib.sha256(password1.encode('utf-8')).hexdigest()
+        password = hashlib.sha256(password.encode('utf-8')).hexdigest()
         DBuser = dbConnect.getUser(email)
 
         if DBuser != None:

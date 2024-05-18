@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&display=swap" rel="stylesheet">     
     <link rel="stylesheet" href="../../static/css/signup.css">
-    
+
 </head>
 <body>
     <div class="wrapper">
@@ -19,10 +19,10 @@
         </header>
 
         <main class="main">
-            <form action="/signup" method="POST">
+            <form action="{{ url_for('signup')}}" method="POST">
                 <section class="section_id">
 
-                    <!--{% with messages = get_flashed_massages() %}
+                    {% with messages = get_flashed_massages() %}
                         {% if massages %}
                         <ul>
                             {% for message in massages %}
@@ -42,7 +42,7 @@
                         .error_address {
                             color: red;
                         }
-                    </style>-->
+                    </style>
 
                     <p class="id_text"></p>ID（メールアドレス）：
                     <p><input class="email" type="text" name="email"/></p>
@@ -50,12 +50,12 @@
 
                 <section  class="section_password">
                     <p class="password_text">パスワード：</p>
-                    <p><input  class="password" type="password" name="password1"/></p>
+                    <p><input  class="password" type="password" name="password"/></p>
                 </section>
 
                 <div class="button">
                     <p><input type="submit" value="新規登録" id="button_signup"></p>
-                    <p><input type="submit" href="/" value="戻る" id="button_back"></p>
+                    <p><input type="submit" src="top.html" value="戻る" id="button_back"></p>
                 </div>
             </form>
         </main>
@@ -67,6 +67,3 @@
     </div>
 </body>
 </html>
-
-
-     

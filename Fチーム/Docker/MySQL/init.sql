@@ -43,4 +43,4 @@ INSERT INTO users(uid, email, password)VALUES('99ace1a1-725b-be03-2455-56a66be4a
 INSERT INTO channels(id, uid, name)VALUES(1, '99ace1a1-725b-be03-2455-56a66be4a079','犬');
 INSERT INTO messages(id, uid, cid, message, created_at)VALUES(1, '99ace1a1-725b-be03-2455-56a66be4a079', 1, '犬です','2024-05-17 10:00:00');
 INSERT INTO images(image_id,image_data)VALUES(1,LOAD_FILE('/static/img/ロゴアイコン.jpg'));
-INSERT INTO createProfile(user_name, user_icon, user_bio, uid)VALUES('テスト', 'テスト用猫アイコン.png', 'よろしくお願いします', '99ace1a1-725b-be03-2455-56a66be4a079);
+INSERT INTO createProfile(user_name, user_icon, user_bio, uid)VALUES('テスト', 'テスト用猫アイコン.png', 'よろしくお願いします', '99ace1a1-725b-be03-2455-56a66be4a079');
