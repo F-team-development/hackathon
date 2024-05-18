@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta name="description" content="Chat PETは、沢山の飼い主と自慢の我が子を共有できるペットを愛でるサイトです。"/>
+    <title>トップ画面</title>
+    <link rel="icon" href="../../static/img/ロゴアイコン.jpg" type="image/vnd.microsoft.icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&display=swap" rel="stylesheet">     
+    <link rel="stylesheet" href="../static/css/top.css">
+    
+</head>
+<body>
+    <div class="wrapper">
+
+        <header class="header">
+            <img src="../static/img/ロゴアイコン.jpg" alt="アイコン" class="header_icon">
+            <h1>ようこそ Chat PETへ！！</h1>
+        </header>
+
+        <main class="main">
+           <div>
+            <h2 class="info">ログインまたは新規登録を行なってください</h2>
+           </div>
+                <div class="button">
+                    <form action="/login" method="GET" id="button">
+                        <p><input type="submit" formaction="login.html" value="ログイン画面へ" id="button"></p>
+                    </form>
+                    <form action="/signup" method="GET">
+                        <p><input type="submit" formaction="signup.html" value="新規登録画面へ" id="button"></p>
+                    </form>
+                </div>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <div></div>
+        </footer>
+
+    </div>
+</body>
+</html>

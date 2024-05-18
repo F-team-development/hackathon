@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, request, redirect, render_template, session, flash, url_for
 from datetime import timedelta, datetime
 import hashlib
@@ -14,6 +15,11 @@ app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
 app.config['MAX_CONTENT_LENGTH'] = 8*1024*1024 # 8MB
+
+# トップページの表示
+@app.route('/')
+def home():
+    return render_template('top.html')
 
 # サインアップページの表示
 @app.route('/signup')

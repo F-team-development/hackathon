@@ -78,7 +78,7 @@ input.password {
 
   /* ボタン */
 
-input#button_login {
+input#button_signup {
   padding: 0;
   border: none;
   outline: none;
@@ -87,14 +87,37 @@ input#button_login {
   background: none;font-size: medium;
   width: 100px;
   height: 40px;
-  margin-bottom: 120px;
+  margin-bottom: 50px;
   border: 1px solid black;
   background-color: white;
   border-radius: 30px;
   border-radius: 30px;
 }
 
-input#button_login:hover {
+input#button_signup:hover {
+  cursor: pointer;
+  background: white;
+  opacity: .9;
+  border: 2px solid black;
+}
+
+input#button_back {
+  padding: 0;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background: none;font-size: medium;
+  width: 100px;
+  height: 40px;
+  margin-bottom: 40px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 30px;
+  border-radius: 30px;
+}
+
+input#button_back:hover {
   cursor: pointer;
   background: white;
   opacity: .9;
